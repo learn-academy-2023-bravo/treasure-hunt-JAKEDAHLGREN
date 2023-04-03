@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Square from "./components/Square";
-import { click } from "@testing-library/user-event/dist/click";
+
 
 const App = () => {
   const [board, setBoard] = useState([
@@ -15,7 +15,8 @@ const App = () => {
     "?",
     "?",
   ])
-  const [treasureLocation, steTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+  const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+ 
 
   const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length))
 
@@ -39,6 +40,7 @@ const App = () => {
     <>
       <h1>Treasure Hunt Game</h1>
       <div className="board">
+      
       {
         board.map((square, index) => {
         return <Square 
@@ -46,12 +48,14 @@ const App = () => {
           index={index}
           key={index}
           handleGamePlay={handleGamePlay}
+
           />
         })
       }
       </div>
+      <button className="restart" onClick={bombLocation}>Play Again?</button>
     </>
-  );
-};
+  )
+}
 
 export default App;
