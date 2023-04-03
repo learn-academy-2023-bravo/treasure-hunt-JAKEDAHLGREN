@@ -21,6 +21,7 @@ const App = () => {
 
   const handleGamePlay = (clickedSquare) => {
     let updateBoard = [...board]
+
     if(clickedSquare === treasureLocation) {
       updateBoard[clickedSquare] = "💰"
       setBoard(updateBoard)
@@ -31,6 +32,7 @@ const App = () => {
       updateBoard[clickedSquare] = "🌴"
       setBoard(updateBoard)
     }
+
   }
 
   return (
