@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Square from "./components/Square";
+import { click } from "@testing-library/user-event/dist/click";
 
 const App = () => {
   const [board, setBoard] = useState([
@@ -14,11 +15,24 @@ const App = () => {
     "?",
     "?",
   ])
+  const [treasureLocation, steTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+
+  const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length))
 
   const handleGamePlay = (clickedSquare) => {
     let updateBoard = [...board]
-    updateBoard[clickedSquare] = "🌴"
-    setBoard(updateBoard)
+
+    if(clickedSquare === treasureLocation) {
+      updateBoard[clickedSquare] = "💰"
+      setBoard(updateBoard)
+    } else if (clickedSquare === bombLocation){
+      updateBoard[clickedSquare] = "💣"
+      setBoard(updateBoard)
+    } else {
+      updateBoard[clickedSquare] = "🌴"
+      setBoard(updateBoard)
+    }
+
   }
 
   return (
